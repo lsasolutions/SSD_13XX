@@ -436,14 +436,14 @@ void SSD_13XX::changeMode(const enum SSD_13XX_modes m)
 					//writecommand_cont(CMD_IDLEOF);
 				}
 				*/
-				
+
 				#if defined(_SSD_1331_REG_H_) || defined(_SSD_1332_REG_H_)
 				if (_currentMode == 8) {//was in powerMode?
 					setRegister_cont(CMD_POWERMODE,SSD_POWERMODE);
 					//delay(120);//needed
 				}
 				#endif
-				
+
 				if (_currentMode == 4){//was inverted?
 					//SSD1332 should need only CMD_NORMALDISPLAY!?!
 					#if defined(_SSD_1331_REG_H_)
@@ -527,7 +527,7 @@ uint8_t SSD_13XX::getMode(void)
 
 void SSD_13XX::setBrightness(uint8_t brightness)
 {
-	
+
 	if (brightness > 15) brightness = 15;
 	startTransaction();
 		writecommand_cont(CMD_MASTERCURRENT);
@@ -774,7 +774,7 @@ void SSD_13XX::defineScrollArea(int16_t a, int16_t b, int16_t c, int16_t d, uint
 		writedata8_last(spd);
 		endTransaction();
 	#endif
-	
+
 }
 
 
@@ -2740,7 +2740,7 @@ void SSD_13XX::drawLine_cont(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uin
 				drawFastVLine_cont(x0, y0, y1 - y0 + 1, color);
 			} else {
 				drawFastVLine_cont(x0, y1, y0 - y1 + 1, color);
-			}		
+			}
 			return;
 		}
 
@@ -2776,8 +2776,8 @@ void SSD_13XX::drawLine_cont(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uin
 					y0 += ystep;
 					err += dx;
 				}
-				#if defined(ESP8266)   	
-					yield(); 	
+				#if defined(ESP8266)
+					yield();
 				#endif
 			}
 			if (x0 > xbegin + 1) drawFastVLine_cont(y0, xbegin, x0 - xbegin, color);
@@ -2795,8 +2795,8 @@ void SSD_13XX::drawLine_cont(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uin
 					y0 += ystep;
 					err += dx;
 				}
-				#if defined(ESP8266)   	
-					yield(); 	
+				#if defined(ESP8266)
+					yield();
 				#endif
 			}
 			if (x0 > xbegin + 1) drawFastHLine_cont(xbegin, y0, x0 - xbegin, color);
@@ -2806,7 +2806,7 @@ void SSD_13XX::drawLine_cont(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uin
 
 
 #if defined(_SSD_1331_REG_H_) || defined(_SSD_1332_REG_H_)
-	
+
 	void SSD_13XX::_sendLineData_cont(int16_t x0,int16_t y0,int16_t x1,int16_t y1)
 	{
 		if (_portrait){
@@ -2819,19 +2819,19 @@ void SSD_13XX::drawLine_cont(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uin
 		writecommand_cont(x1 & 0xFF);
 		writecommand_cont(y1 & 0xFF);
 	}
-	
+
 	void SSD_13XX::_sendColor_cont(uint8_t r,uint8_t g,uint8_t b)
 	{
 		writecommand_cont(r);writecommand_cont(g);writecommand_cont(b);
 	}
-	
+
 	void SSD_13XX::_sendColor_cont(uint16_t color)
 	{
 		uint8_t r,g,b;
 		_convertColor(color,r,g,b);
 		writecommand_cont(r);writecommand_cont(g);writecommand_cont(b);
 	}
-	
+
 	void SSD_13XX::_fillUtility(bool filling)
 	{
 		if (filling != _filled){
@@ -2857,7 +2857,7 @@ void SSD_13XX::drawLine_cont(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uin
 		g =	(uint8_t)((color >> 5) & 0x3F);
 		b = (uint8_t)((color << 1) & 0x3F);
 	}
-		
+
 	/*
 	void SSD_13XX::_convertColor(uint16_t color,uint8_t &r,uint8_t &g,uint8_t &b)
 	{
@@ -2926,7 +2926,7 @@ void SSD_13XX::drawLine_cont(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uin
 				drawFastHLine_cont(x, y, w, color1);
 				drawFastHLine_cont(x, (y+h)-1, w, color1);
 				drawFastVLine_cont(x, y, h, color1);
-				drawFastVLine_cont((x+w)-1, y, h, color1);	
+				drawFastVLine_cont((x+w)-1, y, h, color1);
 			}
 		#endif
 	}
@@ -2947,7 +2947,7 @@ void SSD_13XX::drawLine_cont(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uin
 			writedata8_cont(x0); writedata8_cont(x1);
 			writecommand_cont(CMD_SETROW); //Page
 			writedata8_cont(y0); writedata8_cont(y1);
-			
+
 			writecommand_cont(CMD_WRITERAM);
 		#endif
 	}
@@ -3022,6 +3022,3 @@ void SSD_13XX::printPacket(word data,uint8_t count){
     b|=b<<3;//copy to fill six bits
 }
 */
-
-
-

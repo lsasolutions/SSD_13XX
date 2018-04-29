@@ -236,7 +236,7 @@ class SSD_13XX : public Print {
 	volatile int16_t		_width, _height, _cursorX, _cursorY;
 	volatile bool			_filled;
 	volatile uint8_t		_remapReg;
-	
+
 /* ========================================================================
 					       Low Level SPI Routines
    ========================================================================*/
@@ -618,7 +618,7 @@ class SSD_13XX : public Print {
 	#endif
 
  private:
- 
+
 	uint8_t					_colorDepth;
 	int						_spaceCharWidth;
 	const tFont   		*	_currentFont;
@@ -722,7 +722,7 @@ class SSD_13XX : public Print {
 			void 		writecommand_last(const uint8_t c);
 			void 		writedata8_last(uint8_t c);
 			void 		writedata16_last(uint16_t d);
-		#endif	
+		#endif
 	#endif
 
 	//LPGO
@@ -730,7 +730,7 @@ class SSD_13XX : public Print {
 	int						_getCharCode(uint8_t ch);
 	void					_textWrite(const char* buffer, uint16_t len);
 	bool					_renderSingleChar(const char c);
-	
+
 	void					_glyphRender_unc(
 											const _smCharType * charGlyp,
 											int16_t 	x,
