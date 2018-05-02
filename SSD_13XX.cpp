@@ -2696,7 +2696,14 @@ fix this but is the only 'fast way' I found to acieve this!
 
 void SSD_13XX::drawFastHLine_cont(int16_t x, int16_t y, int16_t w, uint16_t color)
 {
-		if (w < 1) return;
+		//don't draw out of bound pixels
+		if (x < 0){
+			w += x;
+			x = 0;
+		} else if (x + w > SSD_WIDTH){
+			w = SSD_WIDTH - x;
+		}
+		if (w < 1 || x + w < 0 || x > SSD_WIDTH) return;
 		setAddrWindow_cont(x, y, x + w - 1, y,true);
 		do { writedata16_cont(color); } while (--w > 0);
 }
