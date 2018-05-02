@@ -2724,6 +2724,7 @@ void SSD_13XX::drawFastVLine_cont(int16_t x, int16_t y, int16_t h, uint16_t colo
 
 void SSD_13XX::drawPixel_cont(int16_t x, int16_t y, uint16_t color)
 {
+		if (y < 0 || y > SSD_HEIGHT || x < 0 || x > SSD_WIDTH) return;
 		setAddrWindow_cont(x, y, x + 1, y + 1,true);
 		writedata16_cont(color);
 }
