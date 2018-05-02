@@ -2710,7 +2710,14 @@ void SSD_13XX::drawFastHLine_cont(int16_t x, int16_t y, int16_t w, uint16_t colo
 
 void SSD_13XX::drawFastVLine_cont(int16_t x, int16_t y, int16_t h, uint16_t color)
 {
-		if (h < 1) return;
+		//don't draw out of bound pixels
+		if (y < 0){
+			h += y;
+			y = 0;
+		} else if (y + h > SSD_HEIGHT){
+			h = SSD_HEIGHT - y;
+		}
+		if (h < 1 || y + h < 0 || y > SSD_HEIGHT) return;
 		setAddrWindow_cont(x, y, x, y + h - 1,true);
 		do { writedata16_cont(color); } while (--h > 0);
 }
