@@ -254,11 +254,11 @@ void SSD_13XX::begin(bool avoidSPIinit)
 			SPI.setDataMode(SPI_MODE0);
 		}
 	#endif
-	#if defined(ESP8266) && defined(_ESP8266_STANDARDMODE)
-		digitalWrite(_cs,HIGH);
-	#else
-		GPIO_REG_WRITE(GPIO_OUT_W1TS_ADDRESS, _pinRegister(_cs));//H
-	#endif
+#if defined(ESP8266) && defined(_ESP8266_STANDARDMODE) || defined(ESP32)
+		digitalWrite(_cs,HIGH);;
+#else
+	GPIO_REG_WRITE(GPIO_OUT_W1TS_ADDRESS, _pinRegister(_cs)); // H
+#endif
 	enableDataStream();
 #else//(xxx) Rest of CPU
 	pinMode(_dc, OUTPUT);
