@@ -49,7 +49,7 @@ will suffer a bit, however it can be usefult in many cases!
 Default:uncommented (automatically enabled for some CPU)
 ----------------------------------------------------------------------------------*/
 #if !defined(__MK20DX128__) && !defined(__MK20DX256__) && !defined(__SAM3X8E__) && !defined(__MK64FX512__) && !defined(__MK66FX1M0__)// && !defined(ESP8266)
-	#define _SSD_SIZEOPTIMIZER
+	// #define _SSD_SIZEOPTIMIZER
 #endif
 /*--------------------------------------------------------------------------------
 - Default Font -
